@@ -9,7 +9,7 @@ Generamos la clave mediante el siguiente comando
 $ ssh-keygen -t ed25519 -C "tu_correo_asociado_a_tu_cuenta_github@example.com"
 ```
 
-Verificamos la clave mediante el siguiente comando
+Verificamos que se haya generado la clave mediante el siguiente comando
 
 ```bash
 $ ls -la ~/.ssh/"
@@ -19,11 +19,11 @@ Deberia salir una salida por consola tal que la siguiente imagen:
 
 ![imagen ssh](img/verificacion_generacion_claves.png)
 
-La clave con terminacion **.pub** (publica) sera la que continuaremos usando ; mientra la que prescinde de la misma es la clave privada que no debemos compartir con nadie
+La clave con terminacion **.pub** (pública) sera la que continuaremos usando ; mientra la que prescinde de la misma es la clave privada que **NO** debemos compartir con nadie
 
 <br>
 
-
+>Si has llegado hasta aqui eres todo un  Alan Turing
 
 
 
@@ -35,11 +35,16 @@ La clave con terminacion **.pub** (publica) sera la que continuaremos usando ; m
 
 
 Mediante la siguiente linea de comandos , pediremos a la consola que nos muestre la clave 
-Importante debemos agregar **.pub** para indicar que queremos la clave publica, si damos la privada estamos muertos.
+Importante debemos agregar **.pub** para indicar que queremos la clave publica.
+
 
 ```bash
 $ cat ~/.ssh/id_ed25519.pub
 ```
+
+Dicha salida de consola , la **copias**.
+
+**Ten cuidado con copiar espacios en blanco, porque estos afectaran a la clave, toma solo los caracteres que te de la consola**
 
 Posteriormente copiamos dicha clave y nos vamos al navegador a la ventada de Github donde has de seguir estos pasos
 
