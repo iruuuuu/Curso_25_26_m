@@ -57,6 +57,10 @@ function mayusculas (arrayNombres){
 
 console.log(mayusculas(nombres)); // ['ANA', 'JUAN', 'PEPE', 'MARIA'
 
+
+
+
+
 //crear una funcion llamada PreciosconIVA que dado un array de precios me los devuelva con el IVA incluido
 const precios = [100, 200, 300, 400];
 function PreciosconIVA (arrayPrecios){
@@ -64,13 +68,33 @@ function PreciosconIVA (arrayPrecios){
 }
 console.log(PreciosconIVA(precios)); // [121, 242, 363, 484]
 
+
+
+
 //Crear una funcion llamada imparesCuadrados que le pase un array de numeros y me devuelva un array con los numeros impares elevados al cuadrado
+const numeros = [1,2,3,4,5,6,7,8,9,10];
+
+function imparesCuadrados (arrayNumeros){
+    return arrayNumeros.map (arrayNumeros.filter ( (numero) => numero % 2 !== 0 ).map ( (numero) => numero ** 2 ) );
+}
+
+console.log(imparesCuadrados(numeros)); // [1, 9, 25, 49, 81]
 
 
-//crear una funcion llamada noramalizarEmail que le pase un array de emails que pueden llevar espacios al pincipio o al final del email y  me los devuelva sin espacios y en minusculasque
 
+
+//crear una funcion llamada noramalizarEmail que le pase un array de emails que pueden llevar espacios al pincipio o al final del email y  me los devuelva sin espacios y en minusculas
+const emails = ["pedrojimenez@gmail.com","josejulio@hotmail.com       ","            mariajose@outlook.es"];
+
+function normalizarEmail (arrayEmails){
+    // esta funcion quita los espacios y pone en minusculas
+    return arrayEmails.map ( (emails) => email.trim().toLowerCase() );
+}
+console.log(normalizarEmail(emails)); // ['
 
 //crear una funcion llamada Filtrarlongitud que le pase como parametro un array de nombres, un tamaño y me devuelva solo atraves de un array con los nombres cuya longitud es mayor o igual que el parametro que le he colocado
 
 
+
 //crear una funcion llamada normalizanombres propios que le pase un array de nombre y me los devuelva con la primera letra en mayusculas y el resto en minusculas
+
