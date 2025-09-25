@@ -92,8 +92,9 @@ function normalizarEmail (arrayEmails){
 console.log(normalizarEmail(emails)); // ['
 
 //crear una funcion llamada Filtrarlongitud que le pase como parametro un array de nombres, un tamaño y me devuelva solo atraves de un array con los nombres cuya longitud es mayor o igual que el parametro que le he colocado
-
+const nombres2 = ["mario","thor","mateo","saiko"]
 
 
 //crear una funcion llamada normalizanombres propios que le pase un array de nombre y me los devuelva con la primera letra en mayusculas y el resto en minusculas
+const nombres3 = ["lucia", "jOSEFA","PEPA"]
 
