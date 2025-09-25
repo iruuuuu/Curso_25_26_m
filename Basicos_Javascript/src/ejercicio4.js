@@ -70,7 +70,6 @@ console.log(PreciosconIVA(precios)); // [121, 242, 363, 484]
 
 
 
-
 //Crear una funcion llamada imparesCuadrados que le pase un array de numeros y me devuelva un array con los numeros impares elevados al cuadrado
 const numeros = [1,2,3,4,5,6,7,8,9,10];
 
