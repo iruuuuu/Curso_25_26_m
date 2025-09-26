@@ -48,6 +48,16 @@ edades.filter( (edad)--> edad >=18); // [18]  ; como salida es el array con los 
 
 
 
+
+
+
+
+
+
+
+//------------------------------------------------------------EJERCICIOS------------------------------------------------------------------------
+
+
 //Dado un array de nombre crear una funcion llamada MAYUSCULAS que ponga en mayusculas todos los elementos de ese array
 
 const nombres = ["ana", "juan", "pepe", "maria"];
@@ -72,9 +82,15 @@ console.log(PreciosconIVA(precios)); // [121, 242, 363, 484]
 
 //Crear una funcion llamada imparesCuadrados que le pase un array de numeros y me devuelva un array con los numeros impares elevados al cuadrado
 const numeros = [1,2,3,4,5,6,7,8,9,10];
-
+/**
+ * 
+ * @param {number} numerber
+ * @returns  Un array nuevo de los numeros impares elevados al cuadrado
+ */
 function imparesCuadrados (arrayNumeros){
-    return arrayNumeros.map (arrayNumeros.filter ( (numero) => numero % 2 !== 0 ).map ( (numero) => numero ** 2 ) );
+    return arrayNumeros.map (arrayNumeros
+        .filter ( (numero) => numero % 2 !== 0 )
+        .map ( (numero) => numero ** 2 ) );
 }
 
 console.log(imparesCuadrados(numeros)); // [1, 9, 25, 49, 81]
@@ -94,6 +110,9 @@ console.log(normalizarEmail(emails)); // ['
 //crear una funcion llamada Filtrarlongitud que le pase como parametro un array de nombres, un tamaño y me devuelva solo atraves de un array con los nombres cuya longitud es mayor o igual que el parametro que le he colocado
 const nombres2 = ["mario","thor","mateo","saiko"]
 
+function filtrarLongitud(names = [], size = 0) {
+    return names.filter(name => name.length >= size);
+}
 
 //crear una funcion llamada normalizanombres propios que le pase un array de nombre y me los devuelva con la primera letra en mayusculas y el resto en minusculas
 const nombres3 = ["lucia", "jOSEFA","PEPA"]
