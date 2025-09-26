@@ -78,11 +78,10 @@ frutas2.reduce (  (acc ,fruta )=>  {
     return acc;
 }  , {})
 
-//dado el sifuiente array bidimentsional , se pide aplanar dicho array  en un array unidimentsional 
+//dado el siGuiente array bidimentsional , se pide aplanar dicho array  en un array unidimentsional 
 
-
-
-
+const bidimensionales = [[1,2],[4,5],[6,7]];
+bidimensionales.concat(...bidimensionales)  // [1,2,4,5,6,7]
 
 
 
@@ -94,12 +93,14 @@ const usuarios = [
     {id:3, name: "Maria",edad:32 }
 ];
 
+
 usuarios.find(usuario=> usuario.nombre.toLowerCase==="juan"),
 
 
 //dame todos los usuarios cuya edad es >= 28
 
-usuarios.find(usuario => Number(usuarios.edad) > 30)
+usuarios.find(usuario => Number(usuarios.edad) > 30),
+console.log(usuarios)  //{id:3, name: "Maria",edad:32 }
 
 
 //------------------------EJERCICIO------------------------
@@ -113,16 +114,25 @@ const usuarios2 = [
     {id:6, name: "Paula",edad:10, data :{books:220} }
 ];
 
+console.log(usuarios2)
+
 
 //devolver un array con SOLO los nombres de los usuarios que tieen en su biblioteca mas de 20 libros
 
-usuarios2.filter(usuario2=>Number(usuario.books)>=20)
-
+usuarios2
+.filter(usuario2=>Number(usuario2.books)>20)
+.map(usuario2=>usuario2.name);
+console.log(usuarios2)  //["Ana", "Juan", "Maria", "Mario", "Sofia", "Paula"]
 
 //Obtener el valor promedio total de todos los libros si suponemos un precio medio de 28 euros 
-
-
+const precioLibros = 28;
+usuarios2
+.map(usuario2=>usuario2.data.books)  // [100,50,220,100,50,220]
+.reduce((acumulado,libros)=> acumulado + libros ,0)  //740
+* precioLibros   //20720 
+console.log(usuarios2)  //20720
 
 //Decirme que usuarios no tienen libros
 
-usuarios2.filter(usuario2=>Number(usuarios.data.books)=0)
+usuarios2.filter(usuario2=>Number(usuarios2.data.books)===0)
+console.log(usuarios2)  //[]
