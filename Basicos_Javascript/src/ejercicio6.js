@@ -1,58 +1,50 @@
 /**
- * Ejercicio
- * Generar un objeto resumen de mi array que tenga los siguientes campos
-    {
-    valor: numero_correspondiente,
-    posicion: posicion_dentro_del_array,
-    esUltimo: array_que_me_diga:si_es_el_ultimo (true/false)
-    }
-*/
-
-
+ * Ejercicio: Generar un objeto resumen
+ * Generar un objeto resumen de mi array que tenga los siguientes campos:
+ * {
+ * valor: numero_correspondiente,
+ * posicion: posicion_dentro_del_array,
+ * esUltimo: true/false
+ * }
+ */
 const numeros = [1, 2, 3, 4, 5];
 
-
-const resumenNumeros = numeros.map( (numero,indice,miArray)=> {
-    return {
-        valor : numero,
-        posicion: indice,
-        esUltimio:indice === miArray.length -1
-    };
-})
+const resumenNumeros = numeros.map((numero, indice, miArray) => ({
+    valor: numero,
+    posicion: indice,
+    // Corregido el nombre del campo a 'esUltimo'
+    esUltimo: indice === miArray.length - 1
+}));
 
 console.log(resumenNumeros);
 
 /**
- * Ejercicio
- * Mapeado  que tenga nombre , precioOriginal , precioConIva, hayStock
-*/
-
+ * Ejercicio: Mapeado de Productos
+ * Mapeado que tenga nombre, precioOriginal, precioConIva, hayStock
+ */
 const products = [
-    {
-        name: "Laptop",price:1000, stock:5,active:true
-    },
-    {
-        name: "Mouse Logitech", price:28.50 , stock:0, active:false
-    }
-]
+    { name: "Laptop", price: 1000, stock: 5, active: true },
+    { name: "Mouse Logitech", price: 28.50, stock: 0, active: false }
+];
+
+const productsConIva = products.map(product => ({
+    nombre: product.name, // Añadido
+    precioOriginal: product.price,
+    precioConIva: product.price * 1.21,
+    // Corregido el nombre del campo a 'hayStock'
+    hayStock: product.stock > 0,
+}));
+
+console.log(productsConIva);
 
 
+/**
+ * Ejercicio: Filtrar productos
+ * Filtrar los productos que tienen stock y están activos
+ */
+const productsWhitStock = products.filter(product => product.stock > 0 && product.active);
 
-const productsConIva = products.map ((product,price,stock,active)=>{
-    return {
-        original : product.price,
-        precioConIva : product.price*1.21,
-        avaiable: product.stock>0,
-    }
-})
-
-console.log
-
-
-/**Filtrame los productos que tienen stock y estan activos */
-
-
-const productsWhitStock= products.filter (product => product.stock>0 && productsConIva.active);
+console.log(productsWhitStock);
 
 
 
@@ -75,13 +67,31 @@ const buscarLaptop = product.filter(product=> product.name.toLowerCase()||produc
 
 
 
-//crear una funcion que le pase como parametro un array de productos , precio_inical , precio_final y me devuelva los productos cuyo precio esta en ese rango de valores ( sin incluirlos)
-//la funcion se llamara filterPrice
+/**
+ * Ejercicio: Filtrar por Rango de Precio
+ * Crear una funcion que le pase como parametro un array de productos, precio_inical, precio_final
+ * y me devuelva los productos cuyo precio esta en ese rango de valores (SIN incluirlos).
+ */
+const filterPrice = (products, precioInicial, precioFinal) => products.filter((product) =>
+    product.price > precioInicial && product.price < precioFinal
+);
 
+/**
+ * Ejercicio: Modificar FindProductos
+ * Modificar FindProductos para que ademas me muestre solo los que estan activados
+ */
 
-const filterPrice= (products)=>products.filter((product)=products.price)
+/**
+ * @param {Array} products - Array de productos.
+ * @param {string} wordToFind - Palabra a buscar.
+ * @returns {Array} - Array de productos activos que coinciden.
+ */
+const findActiveProducts = (products, wordToFind) => products
+    .filter((product) =>
+        product.active && // ¡Nueva condición!
+        product.name.toLowerCase().includes(wordToFind.toLowerCase())
+    );
 
-//modificar FindProductos para que ademas me muestre solo los que estan activados
 
 
 //Calcular el total del carrito con iva ; funcion totalCarrito
@@ -103,7 +113,7 @@ const carrito = [
 /**
  * @author: Irene Ming Jimenez Hinojosa
  * @param {Object[]} cart  - Carrito de objetos
- * @param {Number} cavat (iva) -Iva a aplicar
+ * @param {Number} vat (iva) -Iva a aplicar
  * @returns ¨{Number} - Total del carrito IVA incluido
  */
 const totalCart = (cart = [], vat=1.21)=>{
@@ -122,10 +132,7 @@ const totalCartwithIva = (cart = [], vat=1.21)=>cart
     ,0);
 
 
-
-/*
-    Agrupar el carrito por categorias    
-*/
+/*    Agrupar el carrito por categorias    */
 
 /*
         {
@@ -158,10 +165,9 @@ const productsCategory = (carrito=[]) => carrito
 
 
 /*
-Array de votos , crear una funcion que me cuente cuantos votos tiene cada uno de los usuarios
+Array de votos , crear una funcion que me cuente
+cuantos votos tiene cada uno de los usuarios
 */
-
-
 const votos = [ "ana","jose","maria","paco","ana","ana"];
 
 const contadorVotos = (contador=[]) => voto
@@ -173,14 +179,12 @@ const contadorVotos = (contador=[]) => voto
 
 
 
-    /*
-    Buscar el ususario cuyo id=2 y obtener el rol que tiene  
-
-    funcion (arrayUsuarios,idBusqueda) --> devuelve el rol que tiene
-     */
+/*
+ * Ejercicio: Buscar el usuario cuyo id=2 y obtener el rol que tiene
+ * funcion (arrayUsuarios, idBusqueda) --> devuelve el rol que tiene
+ */
 
 //CREAR ARRAY CON ID, NOMBRE Y ROL CON 3 USUARIOS
-
 
     const findUsers = (user=[],id=1)=> {
         return user.find((user)=> {
