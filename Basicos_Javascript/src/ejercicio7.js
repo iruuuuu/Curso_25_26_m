@@ -172,8 +172,6 @@ const data4 = {
     }, // Cierre del objeto 'usuario'
 };
 
-
-
 //{const {usuario:{perfil:nombre2,edad=0}}}=data4;
 
 

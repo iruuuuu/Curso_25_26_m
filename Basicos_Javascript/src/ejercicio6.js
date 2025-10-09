@@ -16,7 +16,7 @@ const resumenNumeros = numeros.map((numero, indice, miArray) => ({
     esUltimo: indice === miArray.length - 1
 }));
 
-console.log(resumenNumeros);
+console.log(resumenNumeros);ssfasdf
 
 /**
  * Ejercicio: Mapeado de Productos
