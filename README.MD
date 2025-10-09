@@ -2,7 +2,7 @@
 
 
 ![DWEC Logo/Banner (Opcional - Reemplazar si tienes uno)](https://img.shields.io/badge/Curso-DWEC%202205__2026-blue)
-![Licencia](https://img.shields.io/badge/License-MIT-green) *(Opcional: puedes reemplazar o eliminar según tu licencia)*
+![Licencia](https://img.shields.io/badge/License-MIT-green)
 
 Este repositorio contiene los **apuntes, ejercicios y material práctico** desarrollado para el módulo de **Desarrollo Web en Entorno Cliente (DWEC)**, correspondiente al curso académico **2205/2026**.
 
