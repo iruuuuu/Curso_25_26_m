@@ -1,3 +1,4 @@
+// Base de datos de tareas iniciales
 export const dbTareas = [
   {
     id: 1,
