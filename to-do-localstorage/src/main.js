@@ -5,60 +5,75 @@ import { createLoginForm, setupLoginForm } from './components/LoginForm.js';
 import { createRegisterForm, setupRegisterForm } from './components/RegisterForm.js';
 import { getTareas, saveTareas, addTarea, deleteTarea, toggleTarea, rellenarLocalStorage } from './helpers/tareas.js';
 
-// Variables globales
-let tareas = [];
-
 // ========================================
 // FUNCIONES PARA TAREAS
 // ========================================
 
-// Cargar tareas
-function cargarTareas() {
-    tareas = getTareas();
-}
-
 // Mostrar tareas en la pantalla
-function mostrarTareas() {
+function renderTareas() {
     const listaTareas = document.getElementById('lista-tareas');
     if (!listaTareas) return;
     
+    const tareas = getTareas();
     listaTareas.innerHTML = tareas.map(tarea => `
         <div class="todo-item${tarea.completada ? ' completed' : ''}">
             <div>${tarea.nombre}</div>
             <div class="todo-actions">
-                <button onclick="toggleTarea(${tarea.id})">
+                <button data-action="toggle" data-id="${tarea.id}">
                     ${tarea.completada ? 'Deshacer' : 'Completar'}
                 </button>
-                <button onclick="eliminarTarea(${tarea.id})">Eliminar</button>
+                <button data-action="delete" data-id="${tarea.id}">Eliminar</button>
             </div>
         </div>
     `).join('');
 }
 
 // Agregar nueva tarea
-function agregarTarea(texto) {
-    const nuevaTarea = addTarea(texto);
-    tareas.push(nuevaTarea);
-    mostrarTareas();
+function agregarTareaUI(texto) {
+    addTarea(texto);
+    renderTareas();
 }
 
 // Eliminar tarea
-function eliminarTarea(id) {
+function eliminarTareaUI(id) {
     deleteTarea(id);
-    cargarTareas();
-    mostrarTareas();
+    renderTareas();
 }
 
 // Toggle tarea
-function toggleTareaLocal(id) {
+function toggleTareaUI(id) {
     toggleTarea(id);
-    cargarTareas();
-    mostrarTareas();
+    renderTareas();
 }
 
-// Hacer funciones globales para onclick
-window.toggleTarea = toggleTareaLocal;
-window.eliminarTarea = eliminarTarea;
+// Manejador de eventos para las acciones de las tareas
+function handleTareasActions(e) {
+    const action = e.target.dataset.action;
+    const id = Number(e.target.dataset.id);
+
+    if (!action || !id) return;
+
+    if (action === 'toggle') {
+        toggleTareaUI(id);
+    } else if (action === 'delete') {
+        eliminarTareaUI(id);
+    }
+}
+
+// Manejador de eventos para acciones globales de la app (navegación, logout)
+function handleAppActions(e) {
+    const target = e.target.closest('[data-action]');
+    if (!target) return;
+
+    const action = target.dataset.action;
+    if (action === 'show-login') {
+        mostrarLogin();
+    } else if (action === 'show-register') {
+        mostrarRegistro();
+    } else if (action === 'logout') {
+        cerrarSesion();
+    }
+}
 
 // ========================================
 // FUNCIONES PARA MOSTRAR PANTALLAS
@@ -76,10 +91,6 @@ function mostrarRegistro() {
     setupRegisterForm(mostrarLogin);
 }
 
-// Hacer funciones globales para onclick
-window.mostrarLogin = mostrarLogin;
-window.mostrarRegistro = mostrarRegistro;
-
 // Mostrar aplicación principal
 function mostrarAppPrincipal() {
     const currentUser = getCurrentUser();
@@ -87,7 +98,7 @@ function mostrarAppPrincipal() {
     document.getElementById('app').innerHTML = `
         <div class="user-info">
             <span>Bienvenido, ${currentUser.username}</span>
-            <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
+            <button class="logout-btn" data-action="logout">Cerrar Sesión</button>
         </div>
         <h1>Lista de Tareas</h1>
         <form id="form-tarea">
@@ -107,14 +118,16 @@ function mostrarAppPrincipal() {
         const texto = input.value.trim();
         
         if (texto) {
-            agregarTarea(texto);
+            agregarTareaUI(texto);
             input.value = '';
         }
     });
     
-    // Cargar y mostrar tareas
-    cargarTareas();
-mostrarTareas();
+    // Configurar delegación de eventos para la lista de tareas
+    document.getElementById('lista-tareas').addEventListener('click', handleTareasActions);
+
+    // Mostrar tareas
+    renderTareas();
 }
 
 // Cerrar sesión
@@ -123,21 +136,16 @@ function cerrarSesion() {
     mostrarLogin();
 }
 
-// Hacer función global
-window.cerrarSesion = cerrarSesion;
-
 // ========================================
 // INICIALIZAR APLICACIÓN
 // ========================================
 
 function iniciarApp() {
     console.log('Iniciando aplicación...');
-    
-    // Rellenar localStorage con datos iniciales
-    rellenarLocalStorage(dbTareas);
-    
-    // Cargar tareas
-    cargarTareas();
+    // Rellenar localStorage con datos iniciales si no hay nada
+    if (getTareas().length === 0) {
+        rellenarLocalStorage(dbTareas);
+    }
     
     // Verificar si hay usuario logueado
     if (isAuthenticated()) {
@@ -147,6 +155,9 @@ function iniciarApp() {
         console.log('No hay usuario logueado, mostrando login');
         mostrarLogin();
     }
+
+    // Configurar el manejador de eventos principal de la app
+    document.getElementById('app').addEventListener('click', handleAppActions);
 }
 
 // Iniciar cuando la página esté lista
