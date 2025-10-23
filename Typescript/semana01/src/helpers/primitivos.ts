@@ -241,3 +241,37 @@ console.log(clientesMap);
 // probarlo con 10 5   y otra con 10 0
 
 //se podria ampliar a otras operaciones
+
+
+type TipoOperacion = 'sumar' | 'restar' | 'multiplicar' | 'dividir';
+
+interface Operacion {
+    tipo: TipoOperacion;
+    operando1: number;
+    operando2: number;
+}
+
+
+function calculadora(op: Operacion): number {
+    const { tipo, operando1, operando2 } = op;
+
+    switch (tipo) {
+        case "sumar":
+            return operando1 + operando2;
+        case "restar":
+            return operando1 - operando2;
+        case "multiplicar":
+            return operando1 * operando2;
+        case "dividir":
+            if (operando2 === 0) {
+                throw new Error("No se puede dividir por cero.");
+            }
+            return operando1 / operando2;
+        default:
+            const exhaustiveCheck: never = tipo;
+            throw new Error(`Tipo de operación no reconocida: ${exhaustiveCheck}`);
+    }
+}
+
+console.log(`10 + 5 = ${calculadora({ tipo: 'sumar', operando1: 10, operando2: 5 })}`);
+console.log(`10 / 0 = `, calculadora({ tipo: 'dividir', operando1: 10, operando2: 0 }));
