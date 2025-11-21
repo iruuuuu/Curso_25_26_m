@@ -236,6 +236,13 @@ console.log(clientesMap);
 
 
 
+
+//para que una funcion tenga opciones
+
+function sumarVarios(n1:number=0,n2:number=0,n3:number):number | boolean{ 
+
+}
+
 //calculadora simple cear una calculadora tipada que realize operaciones basicas para ello partimos de una interfaz llama Operacion  formada por tipo con 4 posibles opciones(sumar, restar , multiplicar , dividir)  operando 1 y operando2;
 //crear funcion llamada calculadora que se le pasara como parametro una operacion de tipo operacion y nos devolvera sengun el tipo el  calculo de los 2 operando 
 // probarlo con 10 5   y otra con 10 0
@@ -243,7 +250,8 @@ console.log(clientesMap);
 //se podria ampliar a otras operaciones
 
 
-type TipoOperacion = 'sumar' | 'restar' | 'multiplicar' | 'dividir';
+type TipoOperacion = "sumar" | "restar" | "multiplicar" | "dividir";
+
 
 interface Operacion {
     tipo: TipoOperacion;
@@ -275,3 +283,37 @@ function calculadora(op: Operacion): number {
 
 console.log(`10 + 5 = ${calculadora({ tipo: 'sumar', operando1: 10, operando2: 5 })}`);
 console.log(`10 / 0 = `, calculadora({ tipo: 'dividir', operando1: 10, operando2: 0 }));
+
+
+
+
+
+// para declarar un map
+
+const edades = new Map <string,number>()
+
+edades.set("Antonio",56);
+edades.has("Antonio")
+
+interface Datos {
+    nombre:string;
+    email:string;
+    cp:number;
+}
+
+const misUsuarios= new Map<string,Datos>();
+
+misUsuarios.set("Antonio",{
+    "nombre":"Antonio",
+    "email":"antonio@ejemplo.com",
+    "cp":12345
+})
+
+
+const mySet = new Set<number>();
+
+mySet.add(19)
+
+
+
+
