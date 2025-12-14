@@ -14,9 +14,13 @@ export function Createejercicio1() {
 
 
     function fetching(){
-       return fetch(`${URL_PORT}/bienvenida`)
+        return fetch(`${URL_PORT}/bienvenida`)
+        //procesar la respuesta
+        //primero la convierto a json
         .then(response => response.json())
+        //despues extraigo el texto
         .then(data => {return data.texto })
+        //si hay algun error
         .catch(error=>{ throw new Error("No se ha podido cargar el json")});
     }
 

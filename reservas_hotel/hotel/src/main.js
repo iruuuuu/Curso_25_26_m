@@ -1,4 +1,4 @@
-//main.js
+
 import createApp from './App'
 import './style.css'
 

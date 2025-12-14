@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do</title>
+<link rel="stylesheet" href="/src/style.css">
+<script type="module" src="/src/main.js"></script>
+</head>
+<body>
+
+  <h1>TO-DO</h1>
+
+  <div class="add">
+    <input id="taskInput" type="text" placeholder="Nueva tarea..." />
+    <button id="addBtn">Añadir</button>
+  </div>
+
+  <div class="board">
+    <div class="column" data-col="todo">
+      <h2>Sin hacer</h2>
+      <div class="list" id="todo"></div>
+    </div>
+
+    <div class="column" data-col="doing">
+      <h2>En producción</h2>
+      <div class="list" id="doing"></div>
+    </div>
+
+    <div class="column" data-col="done">
+      <h2>Completada</h2>
+      <div class="list" id="done"></div>
+    </div>
+  </div>
+
+</body>
+</html>
